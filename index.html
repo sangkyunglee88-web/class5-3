@@ -1,0 +1,468 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>5학년 3반 이야기</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jua&family=Gowun+Dodum&display=swap">
+<style>
+/* Layout: 둥근 알림장 공책 느낌 — 상단 띠 헤더, 인사 밴드, 최근 글 3장 카드, 연락처 띠 푸터 */
+:root{
+  --bg:#FFF7EF; --surface:#FFFFFF; --surface-2:#FFF0E3;
+  --ink:#4B3A33; --muted:#86716A; --line:#F1DCCB;
+  --peach:#FFD3BE; --butter:#FFE9A8; --mint:#CFEBD9; --sky:#D3E5F6;
+  --accent:#E9805F; --accent-ink:#B9512F; --on-accent:#FFFFFF;
+  --shadow:0 6px 20px rgba(185,81,47,.10);
+  --f-display:"Jua","Gowun Dodum","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --f-body:"Gowun Dodum","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#2A211E; --surface:#352A26; --surface-2:#3E312C;
+  --ink:#F6EAE2; --muted:#C2ADA3; --line:#4D3D37;
+  --peach:#6A4234; --butter:#665632; --mint:#335041; --sky:#304559;
+  --accent:#FF9E80; --accent-ink:#FFB59C; --on-accent:#2A211E;
+  --shadow:0 6px 20px rgba(0,0,0,.35); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#2A211E; --surface:#352A26; --surface-2:#3E312C;
+  --ink:#F6EAE2; --muted:#C2ADA3; --line:#4D3D37;
+  --peach:#6A4234; --butter:#665632; --mint:#335041; --sky:#304559;
+  --accent:#FF9E80; --accent-ink:#FFB59C; --on-accent:#2A211E;
+  --shadow:0 6px 20px rgba(0,0,0,.35); color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+h1,h2,h3{font-family:var(--f-display);font-weight:400;line-height:1.3;text-wrap:balance;margin:0}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:10px}
+.wrap{max-width:1040px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:2px dashed var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-block:12px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand svg{flex:none}
+.brand h1{font-size:1.6rem;color:var(--accent-ink)}
+nav ul{list-style:none;margin:0;padding:0;display:flex;gap:6px;flex-wrap:wrap}
+nav a{display:block;text-decoration:none;font-family:var(--f-display);font-size:1.05rem;padding:6px 14px;border-radius:999px;color:var(--muted)}
+nav a:hover{background:var(--surface-2);color:var(--ink)}
+nav a[aria-current="page"]{background:var(--peach);color:var(--ink)}
+
+/* hero */
+.hello{padding-block:36px 8px}
+.hello-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:20px;align-items:stretch}
+.hello-text{min-width:0}
+.eyebrow{font-size:.9rem;letter-spacing:.06em;color:var(--muted)}
+.hello h2{font-size:clamp(1.8rem,4.5vw,2.6rem);margin-top:4px}
+.hello p{margin:10px 0 0;color:var(--muted);max-width:34em}
+.today{background:var(--butter);border-radius:22px;padding:18px 20px;display:flex;flex-direction:column;gap:6px;min-width:0;
+  background-image:repeating-linear-gradient(transparent 0 31px,rgba(75,58,51,.10) 31px 32px);background-position:0 14px}
+.today .lab{font-family:var(--f-display);font-size:1.1rem}
+.today .d{font-size:.9rem;color:var(--muted)}
+.today .t{font-weight:700}
+.today .b{white-space:pre-line;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.today button{align-self:flex-start;margin-top:auto}
+
+/* section */
+main{padding-block:24px 48px}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.sec-head h2{font-size:1.6rem}
+.sec-head p{margin:2px 0 0;color:var(--muted);font-size:.95rem}
+.btn{border:0;cursor:pointer;border-radius:999px;padding:9px 18px;font-family:var(--f-display);font-size:1rem;background:var(--accent);color:var(--on-accent);box-shadow:var(--shadow)}
+.btn:hover{filter:brightness(1.05)}
+.btn.ghost{background:var(--surface);color:var(--ink);border:2px solid var(--line);box-shadow:none}
+.btn.danger{background:transparent;color:var(--accent-ink);border:2px solid var(--accent);box-shadow:none}
+.btn:disabled{opacity:.6;cursor:wait}
+
+/* cards */
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.card{background:var(--surface);border-radius:24px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;cursor:pointer;border:0;padding:0;text-align:left;transition:transform .2s}
+.card:hover{transform:translateY(-3px)}
+.thumb{aspect-ratio:16/10;max-width:100%;width:100%;display:grid;place-items:center;overflow:hidden}
+.thumb img{width:100%;height:100%;object-fit:cover}
+.t-news{background:var(--peach)} .t-photo{background:var(--mint)} .t-notice{background:var(--butter)}
+.card-body{padding:16px 18px 20px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.meta{display:flex;align-items:center;gap:8px;font-size:.85rem;color:var(--muted);flex-wrap:wrap}
+.chip{font-family:var(--f-display);font-size:.85rem;padding:2px 10px;border-radius:999px;color:var(--ink)}
+.card h3{font-size:1.25rem}
+.excerpt{margin:0;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.example{font-size:.75rem;border:1px dashed var(--muted);border-radius:6px;padding:0 6px}
+
+/* lists */
+.photos{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+.photo{border:0;padding:0;cursor:pointer;background:var(--surface);border-radius:20px;overflow:hidden;box-shadow:var(--shadow);text-align:left}
+.photo .cap{padding:10px 14px;display:flex;justify-content:space-between;gap:8px;font-size:.95rem}
+.photo .cap span:last-child{color:var(--muted);font-size:.85rem;white-space:nowrap}
+.notebook{background:var(--surface);border-radius:24px;box-shadow:var(--shadow);padding:8px 0;list-style:none;margin:0}
+.notebook li{border-bottom:1px dashed var(--line)}
+.notebook li:last-child{border-bottom:0}
+.notebook button{width:100%;border:0;background:none;cursor:pointer;text-align:left;padding:14px 22px;display:grid;grid-template-columns:7.5em 1fr;gap:14px;align-items:baseline}
+.notebook button:hover{background:var(--surface-2)}
+.nb-date{font-family:var(--f-display);color:var(--accent-ink);font-variant-numeric:tabular-nums}
+.nb-main{min-width:0}
+.nb-main strong{display:block}
+.nb-main span{color:var(--muted);display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+.empty{background:var(--surface);border:2px dashed var(--line);border-radius:24px;padding:36px 20px;text-align:center;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:12px}
+.empty strong{font-family:var(--f-display);font-weight:400;font-size:1.2rem;color:var(--ink)}
+
+/* footer */
+footer{background:var(--surface-2);border-top:2px dashed var(--line)}
+footer .wrap{padding-block:28px;display:grid;grid-template-columns:1fr auto;gap:20px;align-items:start}
+footer h2{font-size:1.3rem;margin-bottom:8px}
+.contact{display:grid;grid-template-columns:auto 1fr;gap:4px 16px;margin:0}
+.contact dt{color:var(--muted)}
+.contact dd{margin:0;min-width:0;overflow-wrap:anywhere;user-select:all}
+.foot-note{grid-column:1/-1;font-size:.85rem;color:var(--muted);margin:0}
+
+/* modal */
+.overlay{position:fixed;inset:0;z-index:20;background:rgba(40,25,20,.45);display:grid;place-items:center;padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.modal{background:var(--surface);border-radius:26px;width:min(640px,100%);max-height:100%;overflow:auto;padding:24px;box-shadow:0 20px 50px rgba(0,0,0,.25)}
+.modal h2{font-size:1.5rem;margin-bottom:12px}
+.modal img{border-radius:16px;margin:8px 0;width:100%}
+.post-body{white-space:pre-line;margin:12px 0 0}
+.row-end{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;margin-top:18px}
+form{display:flex;flex-direction:column;gap:12px}
+label{display:flex;flex-direction:column;gap:4px;font-size:.95rem;color:var(--muted)}
+input,select,textarea{border:2px solid var(--line);border-radius:14px;padding:9px 12px;background:var(--bg)}
+textarea{min-height:140px;resize:vertical}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.err{color:var(--accent-ink);font-size:.9rem;margin:0}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(20px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:999px;z-index:30;font-size:.95rem}
+
+@media (max-width:760px){
+  .hello-grid{grid-template-columns:1fr}
+  .cards{grid-template-columns:1fr}
+  footer .wrap{grid-template-columns:1fr}
+  .two{grid-template-columns:1fr}
+  .notebook button{grid-template-columns:1fr;gap:2px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head><body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#home" aria-label="5학년 3반 이야기 홈">
+      <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true">
+        <rect x="3" y="7" width="34" height="27" rx="9" fill="var(--peach)"/>
+        <rect x="9" y="13" width="22" height="3" rx="1.5" fill="var(--accent)"/>
+        <rect x="9" y="19" width="16" height="3" rx="1.5" fill="var(--accent)" opacity=".6"/>
+        <circle cx="30" cy="9" r="6" fill="var(--butter)"/>
+      </svg>
+      <h1>5학년 3반 이야기</h1>
+    </a>
+    <nav aria-label="메뉴">
+      <ul>
+        <li><a href="#home" data-route="home">홈</a></li>
+        <li><a href="#news" data-route="news">학급 소식</a></li>
+        <li><a href="#photos" data-route="photos">사진첩</a></li>
+        <li><a href="#notice" data-route="notice">알림장</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div id="view"></div>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <h2>담임 선생님 연락처</h2>
+      <dl class="contact" id="contact"></dl>
+    </div>
+    <div id="contactEdit"></div>
+    <p class="foot-note">급한 일은 학교 교무실로 연락해 주세요. 문자는 확인 후 답장드려요.</p>
+  </div>
+</footer>
+
+<div id="modalRoot"></div>
+<div id="toastRoot"></div>
+
+<script>
+(function(){
+const CATS={
+  news:{label:"학급 소식",cls:"t-news",chip:"var(--peach)"},
+  photo:{label:"사진첩",cls:"t-photo",chip:"var(--mint)"},
+  notice:{label:"알림장",cls:"t-notice",chip:"var(--butter)"}
+};
+const DEFAULT_CONTACT={teacher:"담임 선생님 성함",school:"학교 교무실 번호",email:"선생님 이메일",hours:"평일 오후 3시 ~ 4시 30분"};
+const WD=["일","월","화","수","목","금","토"];
+const state={posts:[],contact:DEFAULT_CONTACT,loaded:false,canWrite:false,backend:null,assets:null};
+
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+function fmtDate(iso){
+  if(!iso)return"";const [y,m,d]=iso.split("-").map(Number);
+  const dt=new Date(y,m-1,d);return `${m}월 ${d}일 (${WD[dt.getDay()]})`;
+}
+function todayIso(){const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`}
+function sortPosts(ps){return ps.slice().sort((a,b)=>(b.date||"").localeCompare(a.date||"")||(b.createdAt||0)-(a.createdAt||0))}
+function toast(msg){const r=$("#toastRoot");r.innerHTML=`<div class="toast" role="status">${esc(msg)}</div>`;clearTimeout(toast.t);toast.t=setTimeout(()=>r.innerHTML="",2600)}
+
+/* ---------- 저장소: claude.ai에서는 공유 db, GitHub Pages에서는 posts.json ---------- */
+/* posts.json은 읽기만 해요. 글쓰기 모드(주소 끝 ?write)에서는 고친 posts.json 전체 내용을 만들어 보여 주고,
+   선생님이 GitHub에서 그 내용으로 바꿔 저장하면 모두의 화면에 반영돼요. */
+function jsonBackend(){
+  const load=fetch("posts.json",{cache:"no-cache"}).then(r=>{if(!r.ok)throw new Error(r.status);return r.json()});
+  /* 불러오기에 실패하면 글쓰기를 막아요. 빈 목록으로 posts.json을 덮어쓰는 일을 막기 위해서예요. */
+  load.then(d=>{state.raw={contact:d.contact||{},posts:Array.isArray(d.posts)?d.posts:[]}}).catch(()=>{state.loadError=true;state.canWrite=false});
+  return{
+    kind:"json",
+    subscribePosts(cb){
+      load.then(()=>cb(state.raw.posts.map((p,i)=>({body:"",...p,id:"j"+i,createdAt:state.raw.posts.length-i,_i:i}))))
+        .catch(()=>cb([]));
+    },
+    subscribeContact(cb){load.then(()=>cb({...DEFAULT_CONTACT,...state.raw.contact})).catch(()=>cb(DEFAULT_CONTACT))}
+  };
+}
+function editUrl(){
+  const h=location.hostname;if(!h.endsWith(".github.io"))return"";
+  const user=h.split(".")[0],seg=location.pathname.split("/").filter(Boolean)[0];
+  const repo=seg&&!seg.includes(".")?seg:h;
+  return `https://github.com/${user}/${repo}/edit/main/posts.json`;
+}
+function showJsonResult(data,what){
+  const text=JSON.stringify(data,null,2)+"\n",url=editUrl();
+  openModal(`<h2>${esc(what)} 거의 다 됐어요</h2>
+    <p style="margin:0">아래 내용이 새 <strong>posts.json</strong>이에요. 이렇게 저장해 주세요.</p>
+    <ol style="margin:8px 0;padding-left:1.3em">
+      <li>‘전체 복사’를 눌러요.</li>
+      <li>${url?`<a href="${esc(url)}" target="_blank" rel="noopener">GitHub에서 posts.json 편집 열기</a>`:"GitHub 저장소에서 posts.json을 열고 연필(✏️) 버튼을 눌러요"}.</li>
+      <li>원래 내용을 모두 지우고(Ctrl+A) 붙여넣은 뒤 <strong>Commit changes</strong>를 눌러요.</li>
+      <li>1~2분 뒤 블로그를 새로고침하면 반영돼요.</li>
+    </ol>
+    <textarea id="jsonOut" readonly style="width:100%;min-height:220px;font-family:monospace;font-size:.85rem">${esc(text)}</textarea>
+    <div class="row-end"><button class="btn ghost" data-close>닫기</button><button class="btn" id="copyJson">전체 복사</button></div>`);
+}
+function dbBackend(db){
+  return{
+    kind:"db",
+    subscribePosts(cb){
+      return db.collection("posts").orderBy("createdAt","desc").limit(300)
+        .onSnapshot(s=>cb(s.docs.map(d=>({id:d.id,...d.data()}))),e=>toast("글 목록을 불러오지 못했어요. 새로고침해 주세요."));
+    },
+    addPost(p){return db.collection("posts").add(p)},
+    deletePost(id){return db.collection("posts").doc(id).delete()},
+    subscribeContact(cb){return db.doc("settings/contact").onSnapshot(s=>cb(s.exists?{...DEFAULT_CONTACT,...s.data()}:DEFAULT_CONTACT))},
+    setContact(c){return db.doc("settings/contact").set(c)}
+  };
+}
+function attach(b){
+  state.backend=b;
+  b.subscribePosts(ps=>{state.posts=sortPosts(ps);state.loaded=true;render()});
+  b.subscribeContact(c=>{state.contact=c;renderContact()});
+}
+
+async function boot(){
+  render();renderContact();
+  const writeMode=new URLSearchParams(location.search).has("write");
+  if(!(window.claude&&window.claude.use)){state.canWrite=writeMode;attach(jsonBackend());render();renderContact();return}
+  const [db,user,assets]=await Promise.all([window.claude.use("db"),window.claude.use("user"),window.claude.use("assets")]);
+  state.assets=assets;
+  if(db){
+    let can=false;try{can=user?!!(await user.canEdit()):false}catch(e){}
+    state.canWrite=can;attach(dbBackend(db));
+  }else{state.canWrite=writeMode;attach(jsonBackend())}
+  render();renderContact();
+}
+
+/* ---------- 화면 ---------- */
+function route(){const h=(location.hash||"").slice(1);return["home","news","photos","notice"].includes(h)?h:"home"}
+window.addEventListener("hashchange",()=>{render();window.scrollTo(0,0)});
+
+function thumbHtml(p){
+  if(p.imageUrl)return `<div class="thumb ${CATS[p.category]?.cls||""}"><img src="${esc(p.imageUrl)}" alt="${esc(p.title)}" loading="lazy"></div>`;
+  return `<div class="thumb ${CATS[p.category]?.cls||""}">${artFor(p.category)}</div>`;
+}
+function artFor(cat){
+  if(cat==="notice")return `<svg width="96" height="72" viewBox="0 0 96 72" aria-hidden="true"><rect x="14" y="8" width="68" height="56" rx="10" fill="var(--surface)"/><rect x="24" y="22" width="40" height="4" rx="2" fill="var(--accent)"/><rect x="24" y="32" width="48" height="4" rx="2" fill="var(--line)"/><rect x="24" y="42" width="30" height="4" rx="2" fill="var(--line)"/><circle cx="14" cy="20" r="3" fill="var(--accent)"/><circle cx="14" cy="36" r="3" fill="var(--accent)"/><circle cx="14" cy="52" r="3" fill="var(--accent)"/></svg>`;
+  if(cat==="photo")return `<svg width="96" height="72" viewBox="0 0 96 72" aria-hidden="true"><rect x="10" y="10" width="76" height="52" rx="12" fill="var(--surface)"/><circle cx="34" cy="30" r="7" fill="var(--butter)"/><path d="M18 56 L40 38 L54 48 L66 36 L80 56 Z" fill="var(--accent)" opacity=".7"/></svg>`;
+  return `<svg width="96" height="72" viewBox="0 0 96 72" aria-hidden="true"><circle cx="34" cy="38" r="20" fill="var(--surface)"/><circle cx="62" cy="34" r="16" fill="var(--butter)"/><circle cx="28" cy="34" r="2.5" fill="var(--ink)"/><circle cx="40" cy="34" r="2.5" fill="var(--ink)"/><path d="M28 43 q6 5 12 0" stroke="var(--ink)" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>`;
+}
+function chip(cat){const c=CATS[cat]||CATS.news;return `<span class="chip" style="background:${c.chip}">${c.label}</span>`}
+function cardHtml(p){
+  return `<button class="card" data-open="${esc(p.id)}">
+    ${thumbHtml(p)}
+    <div class="card-body">
+      <div class="meta">${chip(p.category)}<span>${fmtDate(p.date)}</span>${p.example?'<span class="example">예시 글</span>':""}</div>
+      <h3>${esc(p.title)}</h3>
+      <p class="excerpt">${esc(p.body)}</p>
+    </div></button>`;
+}
+function writeBtn(cat){return state.canWrite?`<button class="btn" data-write="${cat||"news"}">＋ 새 글 쓰기</button>`:""}
+function emptyHtml(what,cat){
+  if(!state.loaded)return `<div class="empty"><strong>글을 불러오고 있어요</strong><span>잠시만 기다려 주세요.</span></div>`;
+  if(state.loadError)return `<div class="empty"><strong>글 목록을 불러오지 못했어요</strong><span>잠시 뒤 새로고침해 주세요. 계속 안 되면 posts.json 내용에 쉼표나 따옴표가 빠지지 않았는지 확인해 주세요.</span></div>`;
+  return `<div class="empty"><strong>아직 ${what}이 없어요</strong>
+    <span>${state.canWrite?"오른쪽 위 ‘새 글 쓰기’를 누르면 첫 글이 여기에 올라와요.":"선생님이 글을 올리면 여기에서 볼 수 있어요."}</span>
+    ${state.canWrite?writeBtn(cat):""}</div>`;
+}
+
+function render(){
+  const r=route();
+  document.querySelectorAll("nav a").forEach(a=>{if(a.dataset.route===r)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current")});
+  const v=$("#view");
+  if(r==="home")v.innerHTML=homeView();
+  else if(r==="news")v.innerHTML=listView("news","학급 소식","우리 반에서 있었던 일을 전해요.");
+  else if(r==="photos")v.innerHTML=photoView();
+  else v.innerHTML=noticeView();
+}
+function homeView(){
+  const recent=state.posts.slice(0,3);
+  const lastNotice=state.posts.find(p=>p.category==="notice");
+  const t=todayIso();
+  return `<section class="hello"><div class="wrap hello-grid">
+    <div class="hello-text">
+      <div class="eyebrow">${fmtDate(t)} · 오늘도 반가워요</div>
+      <h2>함께 자라는 5학년 3반</h2>
+      <p>우리 반의 하루하루를 학부모님과 나누는 공간이에요. 학급 소식, 활동 사진, 알림장을 이곳에서 확인해 주세요.</p>
+    </div>
+    <div class="today">
+      <span class="lab">최근 알림장</span>
+      ${lastNotice?`<span class="d">${fmtDate(lastNotice.date)}</span><span class="t">${esc(lastNotice.title)}</span><span class="b">${esc(lastNotice.body)}</span>
+        <button class="btn ghost" data-open="${esc(lastNotice.id)}">전체 보기</button>`
+        :`<span class="b">${state.loaded?"아직 등록된 알림장이 없어요.":"불러오는 중이에요."}</span>`}
+    </div>
+  </div></section>
+  <main><div class="wrap">
+    <div class="sec-head"><div><h2>최근 글</h2><p>새로 올라온 글 세 편이에요.</p></div>${writeBtn("news")}</div>
+    ${recent.length?`<div class="cards">${recent.map(cardHtml).join("")}</div>`:emptyHtml("올라온 글","news")}
+  </div></main>`;
+}
+function listView(cat,title,sub){
+  const ps=state.posts.filter(p=>p.category===cat);
+  return `<main><div class="wrap">
+    <div class="sec-head"><div><h2>${title}</h2><p>${sub}</p></div>${ps.length?writeBtn(cat):""}</div>
+    ${ps.length?`<div class="cards">${ps.map(cardHtml).join("")}</div>`:emptyHtml("학급 소식","news")}
+  </div></main>`;
+}
+function photoView(){
+  const ps=state.posts.filter(p=>p.imageUrl||p.category==="photo");
+  return `<main><div class="wrap">
+    <div class="sec-head"><div><h2>사진첩</h2><p>활동 사진을 모아 보여 드려요. 사진이 있는 모든 글이 여기에 모여요.</p></div>${ps.length?writeBtn("photo"):""}</div>
+    ${ps.length?`<div class="photos">${ps.map(p=>`<button class="photo" data-open="${esc(p.id)}">${thumbHtml(p)}<div class="cap"><span>${esc(p.title)}</span><span>${fmtDate(p.date)}</span></div></button>`).join("")}</div>`:emptyHtml("사진","photo")}
+  </div></main>`;
+}
+function noticeView(){
+  const ps=state.posts.filter(p=>p.category==="notice");
+  return `<main><div class="wrap">
+    <div class="sec-head"><div><h2>알림장</h2><p>준비물과 숙제, 가정통신 안내를 날짜별로 적어요.</p></div>${ps.length?writeBtn("notice"):""}</div>
+    ${ps.length?`<ul class="notebook">${ps.map(p=>`<li><button data-open="${esc(p.id)}"><span class="nb-date">${fmtDate(p.date)}</span><span class="nb-main"><strong>${esc(p.title)}</strong><span>${esc(p.body.split("\n")[0])}</span></span></button></li>`).join("")}</ul>`:emptyHtml("알림장","notice")}
+  </div></main>`;
+}
+function renderContact(){
+  const c=state.contact;
+  $("#contact").innerHTML=`<dt>담임</dt><dd>${esc(c.teacher)}</dd><dt>학교 전화</dt><dd>${esc(c.school)}</dd><dt>이메일</dt><dd>${esc(c.email)}</dd><dt>상담 가능 시간</dt><dd>${esc(c.hours)}</dd>`;
+  $("#contactEdit").innerHTML=state.canWrite&&state.backend?`<button class="btn ghost" id="editContact">연락처 수정</button>`:"";
+}
+
+/* ---------- 모달 ---------- */
+function openModal(html){$("#modalRoot").innerHTML=`<div class="overlay" id="ov"><div class="modal" role="dialog" aria-modal="true">${html}</div></div>`;const f=$("#modalRoot").querySelector("input,textarea,button");f&&f.focus()}
+function closeModal(){$("#modalRoot").innerHTML=""}
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
+
+function showPost(id){
+  const p=state.posts.find(x=>x.id===id);if(!p)return;
+  openModal(`<div class="meta">${chip(p.category)}<span>${fmtDate(p.date)}</span>${p.example?'<span class="example">예시 글</span>':""}</div>
+    <h2 style="margin-top:8px">${esc(p.title)}</h2>
+    ${p.imageUrl?`<img src="${esc(p.imageUrl)}" alt="${esc(p.title)}">`:""}
+    <p class="post-body">${esc(p.body)}</p>
+    <div class="row-end">${state.canWrite?`<button class="btn danger" id="delBtn" data-id="${esc(p.id)}">삭제</button>`:""}<button class="btn ghost" data-close>닫기</button></div>`);
+}
+function showWrite(cat){
+  openModal(`<h2>새 글 쓰기</h2>
+  <form id="writeForm">
+    <div class="two">
+      <label>분류<select id="w-cat">${Object.entries(CATS).map(([k,c])=>`<option value="${k}" ${k===cat?"selected":""}>${c.label}</option>`).join("")}</select></label>
+      <label>날짜<input id="w-date" type="date" value="${todayIso()}" required></label>
+    </div>
+    <label>제목<input id="w-title" required maxlength="80" placeholder="예) 가을 현장체험학습 다녀왔어요"></label>
+    <label>내용<textarea id="w-body" required placeholder="학부모님께 전할 내용을 적어 주세요."></textarea></label>
+    ${state.backend&&state.backend.kind==="json"
+      ?`<label>사진 파일 이름 (선택)<input id="w-imgname" placeholder="예) sports-day.jpg"><span style="font-size:.85rem">사진은 먼저 GitHub 저장소의 images 폴더에 올려 주세요.</span></label>`
+      :`<label>사진 (선택)<input id="w-img" type="file" accept="image/*"></label>`}
+    <p class="err" id="w-err" hidden></p>
+    <div class="row-end"><button type="button" class="btn ghost" data-close>취소</button><button class="btn" id="w-submit">올리기</button></div>
+  </form>`);
+}
+function showContactForm(){
+  const c=state.contact;
+  openModal(`<h2>연락처 수정</h2><form id="contactForm">
+    <label>담임<input id="c-teacher" value="${esc(c.teacher)}"></label>
+    <label>학교 전화<input id="c-school" value="${esc(c.school)}"></label>
+    <label>이메일<input id="c-email" value="${esc(c.email)}"></label>
+    <label>상담 가능 시간<input id="c-hours" value="${esc(c.hours)}"></label>
+    <p class="err" id="c-err" hidden></p>
+    <div class="row-end"><button type="button" class="btn ghost" data-close>취소</button><button class="btn">저장</button></div></form>`);
+}
+
+/* 사진은 긴 변 1280px로 줄여서 저장 */
+function shrink(file){
+  return new Promise((res,rej)=>{
+    const img=new Image(),url=URL.createObjectURL(file);
+    img.onload=()=>{const s=Math.min(1,1280/Math.max(img.width,img.height));const c=document.createElement("canvas");
+      c.width=Math.round(img.width*s);c.height=Math.round(img.height*s);c.getContext("2d").drawImage(img,0,0,c.width,c.height);
+      URL.revokeObjectURL(url);c.toBlob(b=>b?res(b):rej(new Error("사진을 처리하지 못했어요.")),"image/jpeg",.85)};
+    img.onerror=()=>rej(new Error("사진 파일을 열 수 없어요."));img.src=url;
+  });
+}
+function blobToDataUrl(b){return new Promise(r=>{const f=new FileReader();f.onload=()=>r(f.result);f.readAsDataURL(b)})}
+
+document.addEventListener("click",async e=>{
+  const t=e.target;
+  if(t.id==="ov"||t.closest("[data-close]")){closeModal();return}
+  const o=t.closest("[data-open]");if(o){showPost(o.dataset.open);return}
+  const w=t.closest("[data-write]");if(w){showWrite(w.dataset.write);return}
+  if(t.id==="editContact"){showContactForm();return}
+  if(t.id==="copyJson"){
+    const ta=$("#jsonOut");ta.select();
+    try{await navigator.clipboard.writeText(ta.value)}catch(err){document.execCommand("copy")}
+    toast("복사했어요. GitHub에 붙여넣어 주세요");return;
+  }
+  if(t.id==="delBtn"){
+    if(!t.dataset.armed){t.dataset.armed="1";t.textContent="한 번 더 누르면 삭제돼요";return}
+    if(state.backend.kind==="json"){
+      const p=state.posts.find(x=>x.id===t.dataset.id);
+      showJsonResult({...state.raw,posts:state.raw.posts.filter((_,i)=>i!==p._i)},"글 삭제");return;
+    }
+    t.disabled=true;
+    try{await state.backend.deletePost(t.dataset.id);closeModal();toast("글을 삭제했어요")}
+    catch(err){t.disabled=false;toast("삭제하지 못했어요. 글쓰기 권한이 있는지 확인해 주세요.")}
+  }
+});
+document.addEventListener("submit",async e=>{
+  e.preventDefault();
+  if(e.target.id==="writeForm"){
+    const btn=$("#w-submit"),errEl=$("#w-err");errEl.hidden=true;btn.disabled=true;btn.textContent="올리는 중…";
+    try{
+      const post={category:$("#w-cat").value,date:$("#w-date").value,title:$("#w-title").value.trim(),body:$("#w-body").value.trim(),createdAt:Date.now()};
+      if(state.backend.kind==="json"){
+        delete post.createdAt;
+        const img=$("#w-imgname").value.trim().replace(/^\/?(images\/)?/,"");
+        if(img)post.imageUrl="images/"+img;
+        showJsonResult({...state.raw,posts:[post,...state.raw.posts]},"새 글");return;
+      }
+      const f=$("#w-img").files[0];
+      if(f){
+        const blob=await shrink(f);
+        if(state.backend.kind==="db"){
+          if(!state.assets)throw new Error("이 화면에서는 사진을 올릴 수 없어요. 사진 없이 올려 주세요.");
+          const a=await state.assets.upload(blob);post.imageUrl=a.url;post.imageId=a.id;
+        }else post.imageUrl=await blobToDataUrl(blob);
+      }
+      await state.backend.addPost(post);
+      closeModal();toast("새 글을 올렸어요");
+    }catch(err){errEl.textContent=(err&&err.message)||"글을 올리지 못했어요. 다시 시도해 주세요.";errEl.hidden=false;btn.disabled=false;btn.textContent="올리기"}
+  }
+  if(e.target.id==="contactForm"){
+    const c={teacher:$("#c-teacher").value.trim(),school:$("#c-school").value.trim(),email:$("#c-email").value.trim(),hours:$("#c-hours").value.trim()};
+    if(state.backend.kind==="json"){showJsonResult({...state.raw,contact:c},"연락처 수정");return}
+    try{await state.backend.setContact(c);closeModal();toast("연락처를 저장했어요")}
+    catch(err){const el=$("#c-err");el.textContent="저장하지 못했어요. 다시 시도해 주세요.";el.hidden=false}
+  }
+});
+
+boot();
+})();
+</script>
+</body></html>
